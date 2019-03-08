@@ -1,34 +1,35 @@
 import os
+#clear screan
+clear=lambda: os.system('' if os.name=='nt' else 'clear')
 
-clear = lambda: os.system('cls' if os.name=='nt' else 'clear')
-
+#board as a list
 a = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
-count = 0
+player="X"
+opponent="O"
 
-
+#board
 def board():
     print(a[0], a[1], a[2], sep="|")
     print(a[3], a[4], a[5], sep="|")
     print(a[6], a[7], a[8], sep="|")
 
-
+#player1
 def player1():
     i = int(input("Player 1:Enter (1-9):"))
-    if (i < 1 or i > 9 or a[i - 1] == "X" or a[i - 1] == "O"):
+    if (i < 1 or i > 9 or a[i - 1] == player or a[i - 1] == opponent):
         print("INVALID INPUT!")
         player1()
     else:
-        a[i - 1] = "O"
+        a[i - 1] = opponent
 
-
+#player2
 def player2():
     i = int(input("Player 2:Enter (1-9):"))
-    if (i < 1 or i > 9 or a[i - 1] == "X" or a[i - 1] == "O"):
+    if (i < 1 or i > 9 or a[i - 1] == player or a[i - 1] == opponent):
         print("INVALID INPUT!")
         player2()
     else:
-        a[i - 1] = "X"
-
+        a[i - 1] = player
 
 def isWin():
     # horizontal
@@ -46,13 +47,15 @@ def isWin():
         return True
     return False
 
-
-def isdraw():
-    if count == 9:
-        return True
-
+#check draw
+def isMoveLeft():
+    for i in a:
+        if(i not in [player,opponent]):
+            return True
+    return False
 
 if __name__ == "__main__":
+
     while True:
         board()
         player1()
@@ -61,8 +64,7 @@ if __name__ == "__main__":
         if isWin():
             print("Player 1 You Won!")
             break
-        count += 1
-        if isdraw():
+        if not isMoveLeft():
             print("Match draw!")
             break
         player2()
@@ -71,8 +73,7 @@ if __name__ == "__main__":
         if isWin():
             print("player 2 You Won!")
             break
-        count += 1
-        if isdraw():
+        if not isMoveLeft():
             print("Match draw!")
             break
         clear()
