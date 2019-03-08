@@ -2,7 +2,7 @@ import os
 import logging
 logging.basicConfig(filename='app.log',filemode='w',format='%(name)s - %(levelname)s - %message)s')
 
-clear=lambda: os.system('' if os.name=='nt' else 'clear')
+clear=lambda: os.system('cls' if os.name=='nt' else 'clear')
 
 a = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 count = 0

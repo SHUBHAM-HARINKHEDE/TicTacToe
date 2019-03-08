@@ -1,6 +1,6 @@
 import os
 #clear screan
-clear=lambda: os.system('' if os.name=='nt' else 'clear')
+clear=lambda: os.system('cls' if os.name=='nt' else 'clear')
 
 #board as a list
 a = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
